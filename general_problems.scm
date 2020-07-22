@@ -1,7 +1,7 @@
 #lang scheme
 (require rackunit rackunit/text-ui)
 
-; 1. find last element of list
+; 1. Find last element of list
 (define (my-last xs)
   (if (null? (cdr xs))
       (car xs)
@@ -13,7 +13,7 @@
 
 (run-tests my-last-tests)
 
-; 2. find the last but one element of a list
+; 2. Find the last but one element of a list
 (define (my-but-last xs)
   (when (not (null? (cdr xs)))
     (if (null? (cddr xs))
@@ -25,3 +25,17 @@
               (check = (my-but-last '(1 2 3)) 2)))
 
 (run-tests my-but-last-tests)
+
+; 3. Find the K'th element of a list.
+(define (find-kth k xs)
+  (if (= k 0)
+      (car xs)
+      (find-kth (- k 1) (cdr xs))))
+
+(define find-kth-tests
+  (test-suite "Tests for find-kth"
+              (check = (find-kth 0 '(1 2 3)) 1)
+              (check = (find-kth 1 '(1 2 2)) 2)
+              (check = (find-kth 2 '(1 2 3)) 3)))
+
+(run-tests find-kth-tests)
