@@ -39,3 +39,15 @@
               (check = (find-kth 2 '(1 2 3)) 3)))
 
 (run-tests find-kth-tests)
+
+; 4. Find the number of elements of a list.
+(define (my-length xs)
+  (if (null? xs)
+      0
+      (+ 1 (my-length (cdr xs)))))
+
+(define my-length-tests
+  (test-suite "Tests for my-length"
+              (check = (my-length '(1 2 3)) 3)))
+
+(run-tests my-length-tests)
