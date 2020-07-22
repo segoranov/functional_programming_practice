@@ -109,8 +109,26 @@
   ))
 
 (define my-compress-tests
-  (test-suite "Tests for my-flatten"
+  (test-suite "Tests for my-compress"
               (check-equal? (my-compress '(1 1 1 2 3 3 3 4 5 5 5 5 6 6)) '(1 2 3 4 5 6))
               (check-equal? (my-compress '(1 2 3 4 5 6)) '(1 2 3 4 5 6))))
 
 (run-tests my-compress-tests)
+
+; 9. Pack consecutive duplicates of list elements into sublists.
+(define (my-pack xs)
+  (foldr (lambda (x acc)
+           (cond
+             ( (null? (car acc)) (list (list x)) )
+             ( (member x (car acc)) (cons (cons x (car acc)) (cdr acc)) )
+             ( else (cons (list x) acc) ) ))
+         '(())
+         xs))
+
+(define my-pack-tests
+  (test-suite "Tests for my-pack"
+              (check-equal? (my-pack '(1 1 1 1 2 3 3 1 1 4 5 5 5 5)) '((1 1 1 1) (2) (3 3) (1 1) (4) (5 5 5 5)))
+              (check-equal? (my-pack '(1 2 3 4 5)) '((1) (2) (3) (4) (5)))
+              (check-equal? (my-pack '()) '(()))))
+
+(run-tests my-pack-tests)
