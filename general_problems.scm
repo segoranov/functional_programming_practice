@@ -75,3 +75,16 @@
               (check-equal? (my-reverse '(1 2 3 4 5 6 7 8 9 10)) '(10 9 8 7 6 5 4 3 2 1))))
 
 (run-tests my-reverse-tests)
+
+; 6. Find out whether a list is a palindrome
+(define (my-is-palindrome xs)
+  (equal? xs (reverse xs)))
+
+(define my-is-palindrome-tests
+  (test-suite "Tests for my-is-palindrome"
+              (check-false (my-is-palindrome '(1 2 3 4 5 6 7 8 9 10)))
+              (check-false (my-is-palindrome '(1 2 3 3 2 1 0)))
+              (check-true (my-is-palindrome '(1 2 3 2 1)))
+              (check-true (my-is-palindrome '(1 2 3 3 2 1)))))
+
+(run-tests my-is-palindrome-tests)
