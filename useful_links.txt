@@ -1,1 +1,2 @@
 https://stackoverflow.com/questions/16299246/what-is-the-difference-between-eq-eqv-equal-and-in-scheme
+https://stackoverflow.com/questions/34984552/what-is-the-difference-between-quote-and-list

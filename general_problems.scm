@@ -88,3 +88,15 @@
               (check-true (my-is-palindrome '(1 2 3 3 2 1)))))
 
 (run-tests my-is-palindrome-tests)
+
+; 7. Flatten a nested list structure.
+(define (my-flatten xs)
+  (cond ((null? xs) '())
+        ((pair? xs) (append (my-flatten (car xs)) (my-flatten (cdr xs))))
+        (else (list xs))))
+
+(define my-flatten-tests
+  (test-suite "Tests for my-flatten"
+              (check-equal? (my-flatten (list (list 1 2 3) (list 4 5 6) (list (list 7 8) (list 9)) 10)) '(1 2 3 4 5 6 7 8 9 10))))
+
+(run-tests my-flatten-tests)
