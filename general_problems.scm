@@ -100,3 +100,17 @@
               (check-equal? (my-flatten (list (list 1 2 3) (list 4 5 6) (list (list 7 8) (list 9)) 10)) '(1 2 3 4 5 6 7 8 9 10))))
 
 (run-tests my-flatten-tests)
+
+; 8. Eliminate consecutive duplicates of list elements.
+(define (my-compress xs)
+  (cond ( (or (null? xs) (= (length xs) 1)) xs )
+        ( (= (car xs) (cadr xs)) (my-compress (cdr xs)) )
+        ( else (cons (car xs) (my-compress (cdr xs))))
+  ))
+
+(define my-compress-tests
+  (test-suite "Tests for my-flatten"
+              (check-equal? (my-compress '(1 1 1 2 3 3 3 4 5 5 5 5 6 6)) '(1 2 3 4 5 6))
+              (check-equal? (my-compress '(1 2 3 4 5 6)) '(1 2 3 4 5 6))))
+
+(run-tests my-compress-tests)
