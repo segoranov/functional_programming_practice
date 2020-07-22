@@ -13,4 +13,15 @@
 
 (run-tests my-last-tests)
 
-; 2. 
+; 2. find the last but one element of a list
+(define (my-but-last xs)
+  (when (not (null? (cdr xs)))
+    (if (null? (cddr xs))
+        (car xs)
+        (my-but-last (cdr xs)))))
+
+(define my-but-last-tests
+  (test-suite "Tests for my-but-last"
+              (check = (my-but-last '(1 2 3)) 2)))
+
+(run-tests my-but-last-tests)
