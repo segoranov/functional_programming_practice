@@ -51,3 +51,27 @@
               (check = (my-length '(1 2 3)) 3)))
 
 (run-tests my-length-tests)
+
+; 5. Reverse a list
+
+; first define fold-left
+(define (fold-left f init xs)
+  (if (null? xs)
+      init
+      (fold-left f (f (car xs) init) (cdr xs))))
+
+(define fold-left-tests
+  (test-suite "Tests for fold-left"
+              (check = (fold-left (lambda (init x) (+ init x)) 0 '(1 2 3 4 5 6 7 8 9 10)) 55)))
+
+(run-tests fold-left-tests)
+
+; now use fold-left to reverse the list
+(define (my-reverse xs)
+  (fold-left cons '() xs))
+
+(define my-reverse-tests
+  (test-suite "Tests for my-reverse"
+              (check-equal? (my-reverse '(1 2 3 4 5 6 7 8 9 10)) '(10 9 8 7 6 5 4 3 2 1))))
+
+(run-tests my-reverse-tests)
