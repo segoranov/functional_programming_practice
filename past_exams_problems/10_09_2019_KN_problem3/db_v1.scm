@@ -57,11 +57,7 @@
        (cdr annotators))))
 
 (define (annotate db annotators)
-  (if (null? db)
-      '()
-      (append
-       (list (addNewFromAnnotators (car db) annotators)) ; updated row
-       (annotate (cdr db) annotators))))
+  (map (lambda (annotated-data) (addNewFromAnnotators annotated-data annotators)) db))
 
 (define db-test
   (test-suite "Tests updating of db"
