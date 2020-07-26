@@ -1,2 +1,2 @@
 # Scheme
-Solve problems in Scheme as practice for university exam
+Solve problems in Scheme and Haskell as practice for university exam
