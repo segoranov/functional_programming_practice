@@ -10,6 +10,10 @@ permutations :: [a] -> [[a]]
 permutations [x] = [[x]]
 permutations (x:xs) = foldl (++) [] [putEverywhere x permTail | permTail <- permutations xs]
 
+permutations' [x] = [[x]]
+permutations' (x:xs) = foldl (++) [] (map (\permTail -> putEverywhere x permTail) (permutations xs))
+
 main = do
     print (permutations [1,2,3])
+    print (permutations' [1,2,3])
     -- print (putEverywhere 1 [2,3,4])
