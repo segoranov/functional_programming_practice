@@ -8,8 +8,8 @@ putEverywhere x xs = [insertAt n x xs | n <- [0..length xs]]
 
 permutations :: [a] -> [[a]]
 permutations [x] = [[x]]
-permutations (x:xs) = foldl (++) [] [putEverywhere x permsTail | permsTail <- permutations xs]
+permutations (x:xs) = foldl (++) [] [putEverywhere x permTail | permTail <- permutations xs]
 
 main = do
-    print (permutations [1,2, 3])
+    print (permutations [1,2,3])
     -- print (putEverywhere 1 [2,3,4])
