@@ -1,10 +1,10 @@
 -- a)
 totalMin fs =
-  fst
-    ( foldl1
-        (\acc fn_with_value_pair -> if snd acc <= snd fn_with_value_pair then acc else fn_with_value_pair)
-        (map (\f -> (f, f 0)) fs)
-    )
+  fst $
+    foldl1
+      (\acc pair -> if snd acc <= snd pair then acc else pair)
+      . map (\f -> (f, f 0))
+      $ fs
 
 -- TODO: Solve b)
 
